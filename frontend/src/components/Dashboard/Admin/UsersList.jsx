@@ -47,6 +47,7 @@ const UsersList = () => {
     const [total, setTotal] = useState(0);
     const [isSaving, setIsSaving] = useState(false);
     const handleClose = () => {
+        reset();
         setShow(false)
     };
     const handleShow = () => {

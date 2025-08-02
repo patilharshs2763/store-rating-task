@@ -41,7 +41,7 @@ const StoreList = () => {
     const [isSaving, setIsSaving] = useState(false);
 
     const handleClose = () => {
-
+        reset()
         setShow(false)
     };
     const handleShow = () => {

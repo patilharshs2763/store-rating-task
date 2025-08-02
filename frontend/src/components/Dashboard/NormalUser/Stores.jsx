@@ -1,4 +1,4 @@
-import { ArrowDownUp, Star } from 'lucide-react'
+import { ArrowDownUp, CheckIcon, Star } from 'lucide-react'
 import React, { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import storeImage1 from '../../../images/store.png'
@@ -161,7 +161,7 @@ const Stores = () => {
                         ) :
                             storeData.data.length === 0 ?
                                 <tr>
-                                    <td colSpan="6" className="text-center">No Stores Found</td>
+                                    <td colSpan="6" className="text-center fw-bold text-danger">No Stores Found</td>
                                 </tr> :
                                 storeData.data.map((store, ind) =>
                                     <tr key={ind}>
@@ -187,7 +187,7 @@ const Stores = () => {
                                             ))}
                                         </td>
                                         <td className='text-center'>
-                                            <button type="button" className="btn btn-primary"
+                                            <button type="button" className="btn round_button"
                                                 onClick={() => handleShow(store)}
                                             >
                                                 Rate this Store
@@ -202,7 +202,7 @@ const Stores = () => {
             <div className="d-flex justify-content-center">
                 <Pagination>
                     <Pagination.Prev
-                        disabled={currentPage === 1}
+                        disabled={currentPage === 1 || storeData.data.length === 0}
                         onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                     />
 
@@ -217,7 +217,7 @@ const Stores = () => {
                     ))}
 
                     <Pagination.Next
-                        disabled={currentPage === total}
+                        disabled={currentPage === total || storeData.data.length === 0}
                         onClick={() => setCurrentPage(prev => Math.min(prev + 1, total))}
                     />
                 </Pagination>
@@ -277,7 +277,7 @@ const Stores = () => {
                                         })}
 
                                         {!editing && (
-                                            <button type="button" className="btn btn-primary btn-sm" onClick={() => {
+                                            <button type="button" className="btn edit_button btn-sm" onClick={() => {
                                                 setUserRating(selectedStore?.my_rating ?? 0);
                                                 setEditing(true);
                                             }}>
@@ -287,14 +287,14 @@ const Stores = () => {
 
                                         {editing && (
                                             <>
-                                                <button type="button" className="btn btn-secondary btn-sm mx-2" onClick={() => {
+                                                <button type="button" className="btn cancel_button btn-sm mx-2" onClick={() => {
                                                     setUserRating(selectedStore?.my_rating ?? 0); // reset on cancel
                                                     setEditing(false);
                                                 }}>
                                                     Cancel
                                                 </button>
-                                                <button type="button" className="btn btn-success btn-sm" disabled={isLoading} onClick={handleSubmitRating}>
-                                                    Done
+                                                <button type="button" className="btn done_button btn-sm" disabled={isLoading} onClick={handleSubmitRating}>
+                                                    Done <CheckIcon />
                                                     {isLoading && <Spinner size='sm' className='mx-2' />}
                                                 </button>
                                             </>

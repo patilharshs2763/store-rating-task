@@ -74,7 +74,7 @@ export default function Login() {
     return (
         <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
             <div className="d-flex card p-0 card-border w-100 flex-column card_style" style={{ maxWidth: '500px' }}>
-                <div className=' p-0 mt-2'>
+                <div className=' px-0 pt-2'>
                     <h2 className='text-center'>Login</h2>
                 </div>
                 <div className=' p-4'>
@@ -101,7 +101,7 @@ export default function Login() {
                                     className={`form-control ${errors.password ? 'is-invalid' : ''}`}
                                 />
                                 <span
-                                    className="input-group-text bg-white"
+                                    className={`input-group-text bg-transparent ${errors.password ? "border-danger" : ""}`}
                                     onClick={() => setShowPassword(!showPassword)}
                                     style={{ cursor: 'pointer' }}
                                 >
@@ -110,11 +110,10 @@ export default function Login() {
                             </div>
                             <div className="invalid-feedback d-block">
                                 {errors.password?.message}
-                                {console.log('errors: ', errors.password?.message)}
                             </div>
                         </div>
-                        <div className='d-flex flex-column justify-content-center'>
-                            <button type="submit" className="btn btn-primary w-100" disabled={isLogging}>
+                        <div className='d-flex flex-column justify-content-center align-items-center'>
+                            <button type="submit" className="btn  button_style" disabled={isLogging}>
                                 Login
                                 {isLogging && <Spinner size='sm' className='mx-2' />}
                             </button>

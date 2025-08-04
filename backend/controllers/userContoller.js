@@ -14,6 +14,7 @@ async function registerUser(req, res) {
         address: Joi.string().max(400).required().messages({
             'any.required': 'Address is required'
         }),
+        role: Joi.optional(),
         password: Joi.string()
             .min(8)
             .max(16)

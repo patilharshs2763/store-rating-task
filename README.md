@@ -86,3 +86,22 @@ All features implemented in this project were based on work I previously complet
 - ErrorBoundary and Access controle
 
 ---
+> **🔐 Admin Setup:**  
+> To create the initial **System Administrator**, use the `registerUser` API and explicitly pass `"role": "System Administrator"` in the request body:
+>
+> ```json
+> {
+>   "name": "Admin Name",
+>   "email": "admin@example.com",
+>   "password": "Admin@123",
+>   "address": "City Name",
+>   "role": "System Administrator"
+> }
+> ```
+>
+> Once registered, this user can:
+> - Log in to the admin dashboard  
+> - Create and manage users and stores  
+> - Assign roles  
+>
+> 🔄 For regular users, the `role` field is optional and defaults to **Normal User**.

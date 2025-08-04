@@ -27,6 +27,10 @@ async function createStore(req, res) {
                 error: errorMessage
             });
         }
+        const loggedInUser = req.user;
+        if (loggedInUser.role != 'System Administrator') {
+            return res.status(403).json({ message: 'Only System Administrator can create stores.' });
+        }
         const isUserExists = await db.users.findOne({
             where: {
                 user_id: value.user_id

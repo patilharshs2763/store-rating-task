@@ -98,7 +98,10 @@ async function createUser(req, res) {
                 error: errorMessage
             });
         }
-
+        const loggedInUser = req.user;
+        if (loggedInUser.role != 'System Administrator') {
+            return res.status(403).json({ message: 'Only System Administrator can create users.' });
+        }
         const isUserExist = await db.users.findOne({
             where: {
                 email: value.email
